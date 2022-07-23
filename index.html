@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Tes google api </title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <table id="employees" class="table table-striped mb-5">
+        <!-- <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">URL</th>
+            </tr>
+          </thead>
+          <tbody class="appned">
+
+            <tr>
+              <th scope="row">1</th>
+              <td>@mdo</td>
+            </tr>
+          </tbody> -->
+      </table>
+      
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+ // api url
+const api_url =
+	"https://script.google.com/macros/s/AKfycbwPH4GKFf2r1pSmYqDztEiU4HtPRtmJEj9MpOOe_rLHElWsGoNgs1X581tukojjwBDE/exec";
+
+// Defining async function
+async function getapi(url) {
+	
+	// Storing response
+	const response = await fetch(url);
+	
+	// Storing data in form of JSON
+	var data = await response.json();
+	console.log(data);
+	// if (response) {
+	// 	hideloader();
+	// }
+	show(data);
+}
+// Calling that async function
+getapi(api_url);
+// console.log(getapi(api_url));
+
+// Function to hide the loader
+// function hideloader() {
+// 	document.getElementById('loading').style.display = 'none';
+// }
+// Function to define innerHTML for HTML table
+function show(data) {
+    console.log(data);
+	let tab =
+		`<tr>
+		<th>No</th>
+		<th>URL</th>
+		</tr>`;
+	
+	// Loop to access all rows
+	for (let r of data.data) {
+		tab += `<tr>
+	<td>${r.no} </td>
+	<td>${r.url}</td>
+</tr>`;
+	}
+	// Setting innerHTML as tab variable
+	document.getElementById("employees").innerHTML = tab;
+}
+
+</script>  
+
+</body>
+</html>
